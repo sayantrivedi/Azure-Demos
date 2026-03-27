@@ -5,3 +5,4 @@
 /.vs
 /RazorPagesWeb.NetCore.EF.Demo/bin/Debug/net8.0
 /RazorPagesWeb.NetCore.EF.Demo/obj
+/RazorPagesWeb.NetCore.EF.Demo/.vs
