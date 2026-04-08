@@ -1,5 +1,6 @@
 using RazorPagesWeb.NetCore.EF.Demo.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.ApplicationInsights;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,10 @@ builder.Services.AddRazorPages();
 //builder.Logging.AddAzureWebAppDiagnostics();// Log Stream
 builder.Logging.AddApplicationInsights();
 
+builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>(
+    "",
+    LogLevel.Information
+);
 builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
 
 var app = builder.Build();
