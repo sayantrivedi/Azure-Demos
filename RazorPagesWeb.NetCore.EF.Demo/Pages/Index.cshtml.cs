@@ -16,6 +16,7 @@ namespace RazorPagesWeb.NetCore.EF.Demo.Pages
 
         public void OnGet()
         {
+            _logger.LogInformation("Get called");
             ViewData["Greeting"] = _configuration["Greeting"];
         }
     }
