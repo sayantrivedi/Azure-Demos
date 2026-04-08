@@ -8,7 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AzureSqlConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages()
+
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();                 // Log Stream
+builder.Logging.AddApplicationInsights();
+
 builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
 
 var app = builder.Build();
