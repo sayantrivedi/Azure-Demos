@@ -11,8 +11,9 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn
 builder.Services.AddRazorPages();
 
 
-builder.Logging.ClearProviders();
-builder.Logging.AddConsole();                 // Log Stream
+//builder.Logging.ClearProviders();
+//builder.Logging.AddConsole();
+//builder.Logging.AddAzureWebAppDiagnostics();// Log Stream
 builder.Logging.AddApplicationInsights();
 
 builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
