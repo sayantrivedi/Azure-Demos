@@ -15,13 +15,27 @@ builder.Services.AddRazorPages();
 //builder.Logging.ClearProviders();
 //builder.Logging.AddConsole();
 //builder.Logging.AddAzureWebAppDiagnostics();// Log Stream
-builder.Logging.AddApplicationInsights();
+//builder.Logging.AddApplicationInsights( configureTelemetryConfiguration: );
 
-builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>(
-    "",
-    LogLevel.Information
-);
-builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
+//builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>(
+//    "",
+//    LogLevel.Information
+//);
+//builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
+
+builder.Logging.AddApplicationInsights(
+    configureTelemetryConfiguration: config =>
+    {
+        config.ConnectionString =
+            builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];
+    },
+    configureApplicationInsightsLoggerOptions: options =>
+    {
+        // options.TrackExceptionsAsExceptionTelemetry = true;
+        // options.IncludeScopes = true;
+    });
+
+
 
 var app = builder.Build();
 
